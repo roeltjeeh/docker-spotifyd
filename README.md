@@ -115,6 +115,25 @@ future respectively:
     systemctl --user start spotifyd.service
     systemctl --user enable spotifyd.service
 
+## Running as Docker service
+
+A Docker file is provided to help to run spotifyd as docker service. 
+
+```
+docker build -t spotifyd:local -f contrib/Dockerfile .
+```
+
+To run the spotifyd docker service, use the command below. The `--group-add` is to grant access to the sound devices (`/dev/snd`).  
+```
+docker run -d --group-add $(getent group audio | cut -d: -f3) --device /dev/snd:/dev/snd -v $PWD/contrib/spotifyd.conf:/etc/spotifyd.conf --name spotifyd spotifyd:local
+```
+
+Once the container created using the previous command, subsequent start can be done using:
+
+```
+docker start spotifyd
+```
+
 # Logging
 In `--no-daemon` mode, the log is written to standard output, otherwise it is
 written to syslog, and where it's written can be configured in your system
