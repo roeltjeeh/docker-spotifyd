@@ -1,13 +1,11 @@
 FROM rust:stretch as build
 
-ARG pulseaudio=pulseaudio_backend
-
 WORKDIR /usr/src/spotifyd
 COPY . .
 
 RUN apt-get -yqq update && apt-get install --no-install-recommends -yqq libasound2-dev
 
-RUN cargo build --release --feature "${pulseaudio}"
+RUN cargo build --release
 
 FROM debian:stretch-slim as release
 
