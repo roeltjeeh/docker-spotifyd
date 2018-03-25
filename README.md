@@ -120,7 +120,7 @@ future respectively:
 A Docker file is provided to help to run spotifyd as docker service. 
 
 ```
-docker build -t spotifyd:local -f contrib/Dockerfile .
+docker build -t spotifyd:local -f Dockerfile .
 ```
 
 To run the spotifyd docker service, use the command below. The `--group-add` is to grant access to the sound devices (`/dev/snd`).  
