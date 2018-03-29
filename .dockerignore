@@ -5,3 +5,5 @@ README.md
 .git
 .gitignore
 .travis.yml
+Dockerfile*
+target
