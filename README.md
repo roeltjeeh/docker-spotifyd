@@ -123,9 +123,12 @@ A Docker file is provided to help to run spotifyd as docker service.
 docker build -t spotifyd:local -f Dockerfile .
 ```
 
-To run the spotifyd docker service, use the command below. The `--group-add` is to grant access to the sound devices (`/dev/snd`).  
+To run the spotifyd docker service, use the command below. 
+The `--group-add` is to grant access to the sound devices (`/dev/snd`) if the host's audio group id is not 29 (Debian).  
+The `--net host` is to allow local network discovery, without it *Spotify Connect* uses the cloud to link the devices.
+
 ```
-docker run -d --group-add $(getent group audio | cut -d: -f3) --device /dev/snd:/dev/snd -v $PWD/contrib/spotifyd.conf:/etc/spotifyd.conf --name spotifyd spotifyd:local
+docker run -d --net host --group-add $(getent group audio | cut -d: -f3) --device /dev/snd:/dev/snd -v /usr/share/alsa:/usr/share/alsa -v $PWD/contrib/spotifyd.conf:/etc/spotifyd.conf --name spotifyd spotifyd:local
 ```
 
 Once the container created using the previous command, subsequent start can be done using:
