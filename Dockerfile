@@ -1,9 +1,10 @@
 FROM rust:stretch as build
 
 WORKDIR /usr/src/spotifyd
-COPY . .
 
-RUN apt-get -yqq update && apt-get install --no-install-recommends -yqq libasound2-dev
+RUN apt-get -yqq update && \
+    apt-get install --no-install-recommends -yqq libasound2-dev && \
+    git clone https://github.com/Spotifyd/spotifyd.git .
 
 RUN cargo build --release
 
