@@ -9,11 +9,11 @@ RUN dpkg --add-architecture arm64 && \
     apt-get -yqq update && \
     apt-get install --no-install-recommends -yqq gcc-aarch64-linux-gnu libc6-dev-arm64-cross \
     libasound2-dev:arm64 libssl-dev:arm64 && \
-    rustup target add aarch64-unknown-linux-gnu  && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
     git clone https://github.com/Spotifyd/spotifyd.git 
 
 RUN cd spotifyd && \
+    rustup target add aarch64-unknown-linux-gnu  && \
     cargo build --target=aarch64-unknown-linux-gnu --release
 
 RUN cd asound2 && \
