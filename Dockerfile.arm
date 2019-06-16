@@ -1,5 +1,7 @@
 FROM rust:stretch as build
 
+ARG BRANCH=master
+
 ENV PKG_CONFIG_ALLOW_CROSS=1 PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabi/pkgconfig/
 ENV CARGO_TARGET_ARM_UNKNOWN_LINUX_GNUEABI_LINKER="arm-linux-gnueabi-gcc"
 
@@ -11,7 +13,7 @@ RUN dpkg --add-architecture armel && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross \
     libasound2-dev:armel libssl-dev:armel && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone https://github.com/Spotifyd/spotifyd.git
+    git clone --depth=1 --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git 
 
 RUN cd spotifyd && \
     rustup target add arm-unknown-linux-gnueabi && \

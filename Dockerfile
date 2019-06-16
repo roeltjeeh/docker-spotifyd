@@ -1,10 +1,12 @@
 FROM rust:stretch as build
 
+ARG BRANCH=master
+
 WORKDIR /usr/src/spotifyd
 
 RUN apt-get -yqq update && \
     apt-get install --no-install-recommends -yqq libasound2-dev && \
-    git clone https://github.com/Spotifyd/spotifyd.git .
+    git clone --depth=1 --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git .
 
 RUN cargo build --release
 
