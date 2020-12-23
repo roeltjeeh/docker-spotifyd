@@ -1,4 +1,4 @@
-FROM rust:buster as build
+FROM rust:1.47-buster as build
 
 ARG BRANCH=master
 
