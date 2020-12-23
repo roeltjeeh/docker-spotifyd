@@ -1,4 +1,4 @@
-FROM rust:stretch as build
+FROM rust:buster as build
 
 ARG BRANCH=master
 
@@ -10,7 +10,7 @@ RUN apt-get -yqq update && \
 
 RUN cargo build --release
 
-FROM debian:stretch-slim as release
+FROM debian:buster-slim as release
 
 CMD ["/usr/bin/spotifyd", "--no-daemon"]
 
