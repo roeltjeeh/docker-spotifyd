@@ -1,6 +1,6 @@
 FROM rust:1.47-buster as build
 
-ARG BRANCH=39106ed8ed270247b1203cc2eed5b05121c90cf7
+ARG BRANCH=master
 
 WORKDIR /usr/src/spotifyd
 
