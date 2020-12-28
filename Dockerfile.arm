@@ -14,10 +14,10 @@ RUN dpkg --add-architecture armel && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross \
     libasound2-dev:armel libssl-dev:armel && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git && \
-    git checkout -b working ${COMMIT} 
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git 
 
 RUN cd spotifyd && \
+    git checkout -b working ${COMMIT}  && \
     rustup target add arm-unknown-linux-gnueabi && \
     cargo build --target=arm-unknown-linux-gnueabi --release
 

@@ -14,10 +14,10 @@ RUN dpkg --add-architecture armhf && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabihf libc6-dev-armhf-cross \
     libasound2-dev:armhf libssl-dev:armhf && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git && \
-    git checkout -b working ${COMMIT} 
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git 
 
 RUN cd spotifyd && \
+    git checkout -b working ${COMMIT} && \
     rustup target add arm-unknown-linux-gnueabihf && \
     cargo build --target=arm-unknown-linux-gnueabihf --release
 
