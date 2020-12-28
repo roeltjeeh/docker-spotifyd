@@ -14,7 +14,7 @@ RUN dpkg --add-architecture armhf && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabihf libc6-dev-armhf-cross \
     libasound2-dev:armhf libssl-dev:armhf && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git .&& \
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git && \
     git checkout -b working ${COMMIT} 
 
 RUN cd spotifyd && \

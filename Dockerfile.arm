@@ -14,7 +14,7 @@ RUN dpkg --add-architecture armel && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross \
     libasound2-dev:armel libssl-dev:armel && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git . && \
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git && \
     git checkout -b working ${COMMIT} 
 
 RUN cd spotifyd && \

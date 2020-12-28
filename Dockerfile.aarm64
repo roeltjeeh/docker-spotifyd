@@ -13,7 +13,7 @@ RUN dpkg --add-architecture arm64 && \
     apt-get install --no-install-recommends -yqq gcc-aarch64-linux-gnu libc6-dev-arm64-cross \
     libasound2-dev:arm64 libssl-dev:arm64 && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git . && \
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git && \
     git checkout -b working ${COMMIT} 
 
 WORKDIR /usr/src/spotifyd
