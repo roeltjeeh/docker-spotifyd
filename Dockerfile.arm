@@ -1,6 +1,7 @@
 FROM rust:1.47-buster as build
 
-ARG BRANCH=39106ed8ed270247b1203cc2eed5b05121c90cf7
+ARG BRANCH=master
+ARG COMMIT=39106ed8ed270247b1203cc2eed5b05121c90cf7
 
 ENV PKG_CONFIG_ALLOW_CROSS=1 PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabi/pkgconfig/
 ENV CARGO_TARGET_ARM_UNKNOWN_LINUX_GNUEABI_LINKER="arm-linux-gnueabi-gcc"
@@ -13,7 +14,8 @@ RUN dpkg --add-architecture armel && \
     apt-get install --no-install-recommends -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross \
     libasound2-dev:armel libssl-dev:armel && \
     mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
-    git clone --depth=1 --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git 
+    git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git . && \
+    git checkout -b working ${COMMIT} 
 
 RUN cd spotifyd && \
     rustup target add arm-unknown-linux-gnueabi && \
