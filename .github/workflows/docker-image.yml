@@ -34,7 +34,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: goussardg/spotifyd:$(date +%s)
+        tags: goussardg/spotifyd:test
     -
       name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
