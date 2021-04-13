@@ -45,7 +45,7 @@ jobs:
  
       - name: ARMEL
         id: armv5
-        run: docker manifest annotate --arch arm64 --variant v5 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:armel
+        run: docker manifest annotate --arch arm --variant v5 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:armel
  
       - name: Push Manifest
         id: docker_push
