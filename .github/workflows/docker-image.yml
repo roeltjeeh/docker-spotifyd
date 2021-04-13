@@ -37,4 +37,4 @@ jobs:
         
       - name: Inspect Manifest
         id: docker_inspect
-        run: docker manifest inspect ${{ secret.docker_USERNAME }}/spotifyd:latest
+        run: docker manifest inspect ${{ secrets.docker_USERNAME }}/spotifyd:latest
