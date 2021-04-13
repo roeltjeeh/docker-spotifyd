@@ -30,7 +30,23 @@ jobs:
           ${{ secrets.docker_USERNAME }}/spotifyd:arm64 \
           ${{ secrets.docker_USERNAME }}/spotifyd:armel \
           ${{ secrets.docker_USERNAME }}/spotifyd:armhf
-      
+          
+      - name: AMD64
+        id: x86_64
+        run: docker manifest annotate --arch amd64 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:amd64
+        
+      - name: ARM64
+        id: arm64
+        run: docker manifest annotate --arch arm64 --variant v8 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:arm64
+
+      - name: ARMHF
+        id: armv7
+        run: docker manifest annotate --arch arm --variant v7 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:armhf
+ 
+      - name: ARMEL
+        id: armv5
+        run: docker manifest annotate --arch arm64 --variant v5 --os linux ${{ secrets.docker_USERNAME }}/spotifyd:latest ${{ secrets.docker_USERNAME }}/spotifyd:armel
+ 
       - name: Push Manifest
         id: docker_push
         run: docker manifest push ${{ secrets.docker_USERNAME}}/spotifyd:latest
