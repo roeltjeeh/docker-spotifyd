@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Repo 
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Create Manifest
+        id: docker_manifest
+        run: |-
+          docker manifest create ${{ secret.docker_USERNAME }}/spotifyd:latest
+          --amend ${{ secret.docker_USERNAME }}/spotifyd:amd64 
+          --amend ${{ secret.docker_USERNAME }}/spotifyd:arm64
+          --amend ${{ secret.docker_USERNAME }}/spotifyd:armel
+          --amend ${{ secret.docker_USERNAME }}/spotifyd:armhf
