@@ -26,7 +26,7 @@ jobs:
         id: docker_manifest
         run: |-
           docker manifest create ${{ secrets.docker_USERNAME }}/spotifyd:latest
-          --amend ${{ secrets.docker_USERNAME }}/spotifyd:amd64 
-          --amend ${{ secrets.docker_USERNAME }}/spotifyd:arm64
-          --amend ${{ secrets.docker_USERNAME }}/spotifyd:armel
-          --amend ${{ secrets.docker_USERNAME }}/spotifyd:armhf
+          ${{ secrets.docker_USERNAME }}/spotifyd:amd64 
+          ${{ secrets.docker_USERNAME }}/spotifyd:arm64
+          ${{ secrets.docker_USERNAME }}/spotifyd:armel
+          ${{ secrets.docker_USERNAME }}/spotifyd:armhf
