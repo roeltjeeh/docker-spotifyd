@@ -30,3 +30,11 @@ jobs:
           ${{ secrets.docker_USERNAME }}/spotifyd:arm64 \
           ${{ secrets.docker_USERNAME }}/spotifyd:armel \
           ${{ secrets.docker_USERNAME }}/spotifyd:armhf
+      
+      - name: Push Manifest
+        id: docker_push
+        run: docker manifest push ${{ secrets.docker_USERNAME}}/spotifyd:latest
+        
+      - name: Inspect Manifest
+        id: docker_inspect
+        run: docker manifest inspect ${{ secret.docker_USERNAME }}/spotifyd:latest
