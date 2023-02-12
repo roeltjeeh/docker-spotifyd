@@ -10,7 +10,7 @@ WORKDIR /usr/src/
 RUN dpkg --add-architecture armel && \
     apt-get -yqq update && \
     apt-get upgrade -y && \
-    apt-get install -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross \
+    apt-get install -yqq gcc-arm-linux-gnueabi libc6-dev-armel-cross
 #    libasound2-dev:armel libssl-dev:armel
    
 RUN mkdir -p /usr/src/spotifyd /usr/src/asound2 && \
