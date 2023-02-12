@@ -1,4 +1,4 @@
-FROM rust:1.66-buster as build
+FROM rust:1.66-bullseye as build
 
 ARG BRANCH=master
 
