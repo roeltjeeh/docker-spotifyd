@@ -5,8 +5,12 @@ ARG BRANCH=master
 WORKDIR /usr/src/spotifyd
 
 RUN apt-get -yqq update && \
-    apt-get install --no-install-recommends -yqq libasound2-dev && \
+    apt-get install --no-install-recommends -yqq libasound2-dev vlc -yqq && \
     git clone --branch=${BRANCH} https://github.com/Spotifyd/spotifyd.git . 
+    
+RUN install vlc -y
+
+
 
 RUN cargo build --release
 
